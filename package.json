@@ -1,0 +1,36 @@
+{
+  "name": "boilerplate-generator",
+  "version": "1.0.0",
+  "description": "boilerplate-generator-description",
+  "homepage": "https://github.com/afeiship/boilerplate-generator",
+  "author": {
+    "name": "afeiship",
+    "email": "1290657123@qq.com",
+    "url": "https://github.com/afeiship"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman",
+    "yo",
+    "yeoman-generator"
+  ],
+  "devDependencies": {
+    "yeoman-test": "^2.1.0",
+    "yeoman-assert": "^3.1.1",
+    "prettier": "^1.19.1"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "dependencies": {
+    "@feizheng/yeoman-generator-helper": "^1.0.1",
+    "replace-in-file": "^5.0.2",
+    "yeoman-generator": "^4.5.0",
+    "chalk": "^3.0.0",
+    "yosay": "^2.0.2"
+  },
+  "repository": "git@github.com:afeiship/boilerplate-generator.git",
+  "license": "MIT"
+}
