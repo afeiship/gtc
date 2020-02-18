@@ -45,12 +45,12 @@ module.exports = class extends Generator {
   writing() {
     const done = this.async();
     remote(
-      'afeiship',
-      'boilerplate-boilerplate-generator',
+      "afeiship",
+      "boilerplate-name",
       function(err, cachePath) {
         // copy files:
         this.fs.copy(
-          glob.sync(resolve(cachePath, '{**,.*}')),
+          glob.sync(resolve(cachePath, "{**,.*}")),
           this.destinationPath()
         );
         done();
