@@ -26,9 +26,10 @@
   },
   "dependencies": {
     "@feizheng/yeoman-generator-helper": "^1.0.1",
+    "chalk": "^3.0.0",
     "replace-in-file": "^5.0.2",
     "yeoman-generator": "^4.5.0",
-    "chalk": "^3.0.0",
+    "yeoman-remote": "^1.0.1",
     "yosay": "^2.0.2"
   },
   "repository": "git@github.com:afeiship/boilerplate-generator.git",
