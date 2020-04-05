@@ -73,8 +73,8 @@ module.exports = class extends Generator {
     replace.sync({
       files,
       from: [
-        /boilerplate-boilerplate-generator-description/g,
-        /boilerplate-boilerplate-generator/g,
+        /boilerplate-generator-description/g,
+        /boilerplate-generator/g,
         /BoilerplateGenerator/g
       ],
       to: [description, project_name, ProjectName]
