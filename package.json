@@ -2,7 +2,7 @@
   "name": "boilerplate-generator",
   "version": "1.0.0",
   "description": "boilerplate-generator-description",
-  "homepage": "https://github.com/afeiship/boilerplate-generator",
+  "homepage": "https://js.work",
   "author": {
     "name": "afeiship",
     "email": "1290657123@qq.com",
@@ -33,6 +33,10 @@
     "yeoman-remote": "^1.0.1",
     "yosay": "^2.0.2"
   },
-  "repository": "git@github.com:afeiship/boilerplate-generator.git",
-  "license": "MIT"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afeiship/boilerplate-generator"
+  },
+  "license": "MIT",
+  "boilerplate": "boilerplate-generator"
 }
