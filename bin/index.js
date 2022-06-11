@@ -52,7 +52,7 @@ nx.declare({
     gtc(inCmd) {
       const gtcMsg =
         DEFAULT_COMMANDS.find((item) => item.value === inCmd).name +
-        ' build_time: ' +
+        ' at ' +
         new Date().toLocaleString();
       this.conf.update({ gtc: gtcMsg });
       this.exec([
