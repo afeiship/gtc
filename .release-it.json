@@ -4,7 +4,8 @@
   },
   "hooks": {
     "after:init": [
-      "t2k"
+      "t2k",
+      "build"
     ]
   },
   "github": {
