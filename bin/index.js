@@ -50,14 +50,13 @@ nx.declare({
     },
 
     gtc(inCmd) {
-      const gtcMsg =
-        DEFAULT_COMMANDS.find((item) => item.value === inCmd).name +
-        ' at ' +
-        new Date().toLocaleString();
-      this.conf.update({ gtc: gtcMsg });
+      const cmd = DEFAULT_COMMANDS.find((item) => item.value === inCmd);
+      const gtcMsg = cmd ? cmd.name : inCmd;
+      const formated = gtcMsg + ' at ' + new Date().toLocaleString();
+      this.conf.update({ gtc: formated });
       this.exec([
         'git add --all',
-        `git commit -m "chore: gtc - ${gtcMsg}"`,
+        `git commit -m "chore: gtc - ${formated}"`,
         'git push'
       ]);
     },
