@@ -15,11 +15,11 @@ const { execSync } = require('child_process');
 
 const opts = { stdin: process.stdin, stdout: process.stdout };
 const DEFAULT_COMMANDS = [
-  { name: '@beta: 发布到 beta 环境', value: 'beta' },
-  { name: '@prod: 发布到 prod 环境', value: 'prod' },
   { name: '@build: 仅打包当前项目', value: 'build' },
   { name: '@upload-beta: 上传到 beta 环境', value: 'upload-beta' },
-  { name: '@upload-prod: 上传到 prod 环境', value: 'upload-prod' }
+  { name: '@upload-prod: 上传到 prod 环境', value: 'upload-prod' },
+  { name: '@beta: 发布到 beta 环境', value: 'beta' },
+  { name: '@prod: 发布到 prod 环境', value: 'prod' }
 ];
 
 program.version(version);
