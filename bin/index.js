@@ -50,7 +50,10 @@ nx.declare({
     },
 
     gtc(inCmd) {
-      const gtcMsg = DEFAULT_COMMANDS.find(item => item.value === inCmd).name;
+      const gtcMsg =
+        DEFAULT_COMMANDS.find((item) => item.value === inCmd).name +
+        ' build_time: ' +
+        new Date().toLocaleString();
       this.conf.update({ gtc: gtcMsg });
       this.exec([
         'git add --all',
