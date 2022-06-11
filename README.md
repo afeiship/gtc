@@ -21,13 +21,13 @@ npm i && npm link
 
 ## usage
 ~~~
-Usage: glab-trigger-cli [options]
+Usage: gtc [options]
 
 Options:
-  -V, --version       output the version number
-  -d, --debug         only show cmds, but not clean.
-  -s, --src <string>  source filepath. (default: "./src")
-  -h, --help          display help for command
+  -V, --version  output the version number
+  -d, --debug    only show cmds, but not clean.
+  -i, --init     Add gtc config to package.json.
+  -h, --help     display help for command
 ~~~
 
 ## license

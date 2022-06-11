@@ -27,7 +27,6 @@ program.version(version);
 program
   .option('-d, --debug', 'only show cmds, but not clean.')
   .option('-i, --init', 'Add gtc config to package.json.')
-  .option('-s, --src <string>', 'source filepath.', './src')
   .parse(process.argv);
 
 nx.declare({
