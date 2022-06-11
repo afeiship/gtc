@@ -21,7 +21,7 @@ npm i && npm link
 
 ## usage
 ~~~
-Usage: gtc [options]
+Usage: glab-trigger-cli [options]
 
 Options:
   -V, --version  output the version number

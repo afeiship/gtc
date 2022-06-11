@@ -1,6 +1,6 @@
 {
   "name": "@jswork/glab-trigger-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gitlab trigger cli.",
   "homepage": "https://js.work",
   "author": {
@@ -8,6 +8,7 @@
     "email": "1290657123@qq.com"
   },
   "bin": {
+    "glab-trigger-cli": "bin/index.js",
     "gtc": "bin/index.js"
   },
   "scripts": {
@@ -38,8 +39,11 @@
     "release-it": "^14.14.3"
   },
   "keywords": [
-    "boilerplate",
-    "cli"
+    "cli",
+    "gitlab",
+    "glab",
+    "trigger",
+    "gtc"
   ],
   "repository": {
     "type": "git",
