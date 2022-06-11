@@ -25,6 +25,7 @@
     "commander": "^6.2.0",
     "globby": "^11.1.0",
     "gulp-rename": "^2.0.0",
+    "ipt": "^3.2.0",
     "require-dir": "^1.2.0",
     "yargs": "^13.2.4"
   },
@@ -47,5 +48,6 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
-  }
+  },
+  "gtc": "@beta: 发布到 beta 环境"
 }
