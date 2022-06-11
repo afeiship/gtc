@@ -18,7 +18,7 @@ const DEFAULT_COMMANDS = [
   { name: '@beta: 发布到 beta 环境', value: 'beta' },
   { name: '@prod: 发布到 prod 环境', value: 'prod' },
   { name: '@build: 仅打包当前项目', value: 'build' },
-  { name: '@upload_beta: 上传到 beta 环境', value: 'upload-beta' },
+  { name: '@upload-beta: 上传到 beta 环境', value: 'upload-beta' },
   { name: '@upload-prod: 上传到 prod 环境', value: 'upload-prod' }
 ];
 
