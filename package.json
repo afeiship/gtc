@@ -20,9 +20,10 @@
     "@jswork/next": "^1.0.5",
     "@jswork/next-absolute-package": "^1.0.1",
     "@jswork/next-get-key": "^1.0.0",
-    "globby": "^11.1.0",
+    "@jswork/next-json-configuration": "^1.0.2",
     "chalk": "^4.1.0",
     "commander": "^6.2.0",
+    "globby": "^11.1.0",
     "gulp-rename": "^2.0.0",
     "require-dir": "^1.2.0",
     "yargs": "^13.2.4"
