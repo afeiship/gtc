@@ -62,7 +62,7 @@ nx.declare({
       const gtcMsg = cmd ? `${cmd.name} ${this.action(cmd)}` : inCmd;
       const formated = gtcMsg + ' at ' + dateformat(null, DEFAULT_FORMAT);
       this.conf.update({ gtc: formated });
-      this.exec(['git add --all', `git commit -m "chore: 🦜 - ${formated}"`, 'git push']);
+      this.exec(['git add --all', `git commit -m "chore: 🦜 ${formated}"`, 'git push']);
     },
 
     main() {
