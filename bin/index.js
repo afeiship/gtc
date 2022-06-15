@@ -17,9 +17,9 @@ const opts = { stdin: process.stdin, stdout: process.stdout };
 const DEFAULT_COMMANDS = [
   { name: '@build: 仅打包当前项目', value: 'build' },
   { name: '@upload-beta: 上传到 beta 环境', value: 'upload-beta' },
-  { name: '@upload-prod: 上传到 prod 环境', value: 'upload-prod' },
+  { name: '@upload-production: 上传到 production 环境', value: 'upload-production' },
   { name: '@beta: 发布到 beta 环境', value: 'beta' },
-  { name: '@prod: 发布到 prod 环境', value: 'prod' }
+  { name: '@production: 发布到 production 环境', value: 'production' }
 ];
 
 program.version(version);
@@ -54,11 +54,7 @@ nx.declare({
       const gtcMsg = cmd ? cmd.name : inCmd;
       const formated = gtcMsg + ' at ' + new Date().toLocaleString();
       this.conf.update({ gtc: formated });
-      this.exec([
-        'git add --all',
-        `git commit -m "chore: gtc - ${formated}"`,
-        'git push'
-      ]);
+      this.exec(['git add --all', `git commit -m "chore: gtc - ${formated}"`, 'git push']);
     },
 
     main() {
