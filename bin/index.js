@@ -17,8 +17,10 @@ const opts = { stdin: process.stdin, stdout: process.stdout };
 const DEFAULT_COMMANDS = [
   { name: '@build: 仅打包当前项目', value: 'build' },
   { name: '@upload-beta: 上传到 beta 环境', value: 'upload-beta' },
+  { name: '@upload-staging: 上传到 staging 环境', value: 'upload-staging' },
   { name: '@upload-production: 上传到 production 环境', value: 'upload-production' },
   { name: '@beta: 发布到 beta 环境', value: 'beta' },
+  { name: '@staging: 发布到 staging 环境', value: 'staging' },
   { name: '@production: 发布到 production 环境', value: 'production' }
 ];
 
