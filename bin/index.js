@@ -3,6 +3,8 @@ const { Command } = require('commander');
 const chalk = require('chalk');
 const path = require('path');
 const ipt = require('ipt');
+const dateformat = require('dateformat');
+const DEFAULT_FORMAT = 'yyyy-mm-dd HH:MM:ss';
 
 // next packages:
 require('@jswork/next');
@@ -15,13 +17,13 @@ const { execSync } = require('child_process');
 
 const opts = { stdin: process.stdin, stdout: process.stdout };
 const DEFAULT_COMMANDS = [
-  { name: '@build: 仅打包当前项目', value: 'build' },
-  { name: '@upload-beta: 上传到 beta 环境', value: 'upload-beta' },
-  { name: '@upload-staging: 上传到 staging 环境', value: 'upload-staging' },
-  { name: '@upload-production: 上传到 production 环境', value: 'upload-production' },
-  { name: '@beta: 发布到 beta 环境', value: 'beta' },
-  { name: '@staging: 发布到 staging 环境', value: 'staging' },
-  { name: '@production: 发布到 production 环境', value: 'production' }
+  { name: '仅build当前项目', value: 'build' },
+  { name: '上传到 beta 环境', value: 'upload-beta' },
+  { name: '上传到 staging 环境', value: 'upload-staging' },
+  { name: '上传到 production 环境', value: 'upload-production' },
+  { name: '发布到 beta 环境', value: 'beta' },
+  { name: '发布到 staging 环境', value: 'staging' },
+  { name: '发布到 production 环境', value: 'production' }
 ];
 
 program.version(version);
@@ -53,10 +55,10 @@ nx.declare({
 
     gtc(inCmd) {
       const cmd = DEFAULT_COMMANDS.find((item) => item.value === inCmd);
-      const gtcMsg = cmd ? `${cmd.name} [__@${cmd.value}__]` : inCmd;
-      const formated = gtcMsg + ' at ' + new Date().toLocaleString();
+      const gtcMsg = cmd ? `${cmd.name} __@${cmd.value}__` : inCmd;
+      const formated = gtcMsg + ' at ' + dateformat(null, DEFAULT_FORMAT);
       this.conf.update({ gtc: formated });
-      this.exec(['git add --all', `git commit -m "chore: gtc - ${formated}"`, 'git push']);
+      this.exec(['git add --all', `git commit -m "chore: 🦜 - ${formated}"`, 'git push']);
     },
 
     main() {

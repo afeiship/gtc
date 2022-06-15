@@ -31,6 +31,7 @@
     "yargs": "^13.2.4"
   },
   "devDependencies": {
+    "dateformat": "^3.0.3",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-load-plugins": "^2.0.5",
