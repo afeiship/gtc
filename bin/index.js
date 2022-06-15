@@ -15,13 +15,13 @@ const { execSync } = require('child_process');
 
 const opts = { stdin: process.stdin, stdout: process.stdout };
 const DEFAULT_COMMANDS = [
-  { name: '__@build__: 仅打包当前项目', value: 'build' },
-  { name: '__@upload-beta__: 上传到 beta 环境', value: 'upload-beta' },
-  { name: '__@upload-staging__: 上传到 staging 环境', value: 'upload-staging' },
-  { name: '__@upload-production__: 上传到 production 环境', value: 'upload-production' },
-  { name: '__@beta__: 发布到 beta 环境', value: 'beta' },
-  { name: '__@staging__: 发布到 staging 环境', value: 'staging' },
-  { name: '__@production__: 发布到 production 环境', value: 'production' }
+  { name: '@build: 仅打包当前项目', value: 'build' },
+  { name: '@upload-beta: 上传到 beta 环境', value: 'upload-beta' },
+  { name: '@upload-staging: 上传到 staging 环境', value: 'upload-staging' },
+  { name: '@upload-production: 上传到 production 环境', value: 'upload-production' },
+  { name: '@beta: 发布到 beta 环境', value: 'beta' },
+  { name: '@staging: 发布到 staging 环境', value: 'staging' },
+  { name: '@production: 发布到 production 环境', value: 'production' }
 ];
 
 program.version(version);
@@ -53,7 +53,7 @@ nx.declare({
 
     gtc(inCmd) {
       const cmd = DEFAULT_COMMANDS.find((item) => item.value === inCmd);
-      const gtcMsg = cmd ? cmd.name : inCmd;
+      const gtcMsg = cmd ? `${cmd.name} [__@${cmd.value}__]` : inCmd;
       const formated = gtcMsg + ' at ' + new Date().toLocaleString();
       this.conf.update({ gtc: formated });
       this.exec(['git add --all', `git commit -m "chore: gtc - ${formated}"`, 'git push']);
