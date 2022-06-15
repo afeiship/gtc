@@ -47,6 +47,10 @@ nx.declare({
       });
     },
 
+    action(cmd) {
+      return `__@${cmd.value}__`;
+    },
+
     exec(inCmds) {
       const cmdstr = inCmds.join(' && ');
       console.log(chalk.green(cmdstr));
@@ -55,7 +59,7 @@ nx.declare({
 
     gtc(inCmd) {
       const cmd = DEFAULT_COMMANDS.find((item) => item.value === inCmd);
-      const gtcMsg = cmd ? `${cmd.name} __@${cmd.value}__` : inCmd;
+      const gtcMsg = cmd ? `${cmd.name} ${this.action(cmd)}` : inCmd;
       const formated = gtcMsg + ' at ' + dateformat(null, DEFAULT_FORMAT);
       this.conf.update({ gtc: formated });
       this.exec(['git add --all', `git commit -m "chore: 🦜 - ${formated}"`, 'git push']);
