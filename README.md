@@ -24,10 +24,11 @@ npm i && npm link
 Usage: glab-trigger-cli [options]
 
 Options:
-  -V, --version  output the version number
-  -d, --debug    only show cmds, but not clean.
-  -i, --init     Add gtc config to package.json.
-  -h, --help     display help for command
+  -V, --version       output the version number
+  -d, --debug         only show cmds, but not clean.
+  -u, --check-update  Check if has new udpate
+  -i, --init          Add gtc config to package.json.
+  -h, --help          display help for command
 ~~~
 
 ## license

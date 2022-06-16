@@ -5,6 +5,7 @@ const path = require('path');
 const ipt = require('ipt');
 const dateformat = require('dateformat');
 const DEFAULT_FORMAT = 'yyyy-mm-dd HH:MM:ss';
+const pkg = require('../package.json');
 
 // next packages:
 require('@jswork/next');
@@ -31,6 +32,7 @@ program.version(version);
 
 program
   .option('-d, --debug', 'only show cmds, but not clean.')
+  .option('-u, --check-update', 'Check if has new udpate')
   .option('-i, --init', 'Add gtc config to package.json.')
   .parse(process.argv);
 
@@ -72,6 +74,16 @@ nx.declare({
       });
     },
 
+    checkUpdate() {
+      const lastetVersion = execSync('npm show @jswork/glab-trigger-cli version').toString().trim();
+      if (lastetVersion !== version) {
+        console.log(chalk.yellow(`${version} is outdated, latest version is ${lastetVersion}`));
+        console.log(chalk.yellow('Please use "npm i -g @jswork/glab-trigger-cli" to update'));
+      } else {
+        console.log(chalk.green(`Current version ${version} is up to date`));
+      }
+    },
+
     start() {
       if (program.init) {
         this.conf.update({ gtc: '@gtc_init' });
@@ -83,7 +95,11 @@ nx.declare({
         this.gtc(arg);
       }
 
-      this.main();
+      if (program.checkUpdate) {
+        this.checkUpdate();
+      } else {
+        this.main();
+      }
     }
   }
 });
