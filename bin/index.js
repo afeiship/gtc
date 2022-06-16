@@ -5,13 +5,12 @@ const path = require('path');
 const ipt = require('ipt');
 const dateformat = require('dateformat');
 const DEFAULT_FORMAT = 'yyyy-mm-dd HH:MM:ss';
-const pkg = require('../package.json');
 
 // next packages:
 require('@jswork/next');
 require('@jswork/next-absolute-package');
 
-const { version } = nx.absolutePackage();
+const { version, name } = nx.absolutePackage();
 const program = new Command();
 const NxJsonConfiguration = require('@jswork/next-json-configuration');
 const { execSync } = require('child_process');
@@ -75,10 +74,10 @@ nx.declare({
     },
 
     checkUpdate() {
-      const lastetVersion = execSync('npm show @jswork/glab-trigger-cli version').toString().trim();
+      const lastetVersion = execSync(`npm show ${name} version`).toString().trim();
       if (lastetVersion !== version) {
         console.log(chalk.yellow(`${version} is outdated, latest version is ${lastetVersion}`));
-        console.log(chalk.yellow('Please use "npm i -g @jswork/glab-trigger-cli" to update'));
+        console.log(chalk.yellow(`Please use "npm i -g ${name}" to update`));
       } else {
         console.log(chalk.green(`Current version ${version} is up to date`));
       }
