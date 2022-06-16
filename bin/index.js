@@ -17,14 +17,14 @@ const { execSync } = require('child_process');
 
 const opts = { stdin: process.stdin, stdout: process.stdout };
 const DEFAULT_COMMANDS = [
-  { name: '更新 cache 的 node_modules', value: 'cache' },
-  { name: '仅 build 当前项目', value: 'build' },
-  { name: '上传到 beta 环境', value: 'upload-beta' },
-  { name: '上传到 staging 环境', value: 'upload-staging' },
-  { name: '上传到 production 环境', value: 'upload-production' },
   { name: '发布到 beta 环境', value: 'beta' },
   { name: '发布到 staging 环境', value: 'staging' },
-  { name: '发布到 production 环境', value: 'production' }
+  { name: '发布到 production 环境', value: 'production' },
+  { name: '仅 build 当前项目', value: 'build' },
+  { name: '仅上传到 beta 环境', value: 'upload-beta' },
+  { name: '仅上传到 staging 环境', value: 'upload-staging' },
+  { name: '仅上传到 production 环境', value: 'upload-production' },
+  { name: '仅更新 cache 的 node_modules', value: 'cache' }
 ];
 
 program.version(version);
