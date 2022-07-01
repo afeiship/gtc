@@ -30,7 +30,7 @@ const DEFAULT_COMMANDS = [
 program.version(version);
 
 program
-  .option('-d, --debug', 'only show cmds, but not clean.')
+  .option('-d, --debug', 'Only show cmds, but not clean.')
   .option('-u, --check-update', 'Check if has new udpate')
   .option('-i, --init', 'Add gtc config to package.json.')
   .parse(process.argv);
