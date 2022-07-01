@@ -31,7 +31,7 @@ program.version(version);
 
 program
   .option('-d, --debug', 'Only show cmds, but not clean.')
-  .option('-u, --check-update', 'Check if has new udpate')
+  .option('-u, --check-update', 'Check if has new udpate.')
   .option('-i, --init', 'Add gtc config to package.json.')
   .parse(process.argv);
 
