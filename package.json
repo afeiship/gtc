@@ -1,6 +1,6 @@
 {
   "name": "@jswork/glab-trigger-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Gitlab trigger cli.",
   "homepage": "https://js.work",
   "author": {
@@ -22,6 +22,7 @@
     "@jswork/next-absolute-package": "^1.0.1",
     "@jswork/next-get-key": "^1.0.0",
     "@jswork/next-json-configuration": "^1.0.2",
+    "dateformat": "^3.0.3",
     "chalk": "^4.1.0",
     "commander": "^6.2.0",
     "globby": "^11.1.0",
@@ -31,7 +32,6 @@
     "yargs": "^13.2.4"
   },
   "devDependencies": {
-    "dateformat": "^3.0.3",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-load-plugins": "^2.0.5",
