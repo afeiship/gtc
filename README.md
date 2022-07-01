@@ -17,6 +17,9 @@ npm i -g @jswork/glab-trigger-cli
 git clone https://github.com/afeiship/glab-trigger-cli.git
 cd glab-trigger-cli
 npm i && npm link
+
+# uninstall
+npm rm --global @jswork/glab-trigger-cli
 ```
 
 ## usage
