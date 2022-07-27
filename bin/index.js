@@ -29,7 +29,6 @@ const DEFAULT_COMMANDS = {
     { name: '仅更新 cache 的 node_modules', value: 'cache' }
   ]
 };
-const CACHE_COMMANDS = {};
 
 program.version(version);
 
