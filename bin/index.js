@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const { Command } = require('commander');
 const chalk = require('chalk');
+const fs = require('fs');
 const path = require('path');
 const ipt = require('ipt');
 const dateformat = require('dateformat');
@@ -16,16 +17,19 @@ const NxJsonConfiguration = require('@jswork/next-json-configuration');
 const { execSync } = require('child_process');
 
 const opts = { stdin: process.stdin, stdout: process.stdout };
-const DEFAULT_COMMANDS = [
-  { name: '发布到 beta 环境', value: 'beta' },
-  { name: '发布到 staging 环境', value: 'staging' },
-  { name: '发布到 production 环境', value: 'production' },
-  { name: '仅 build 当前项目', value: 'build' },
-  { name: '仅上传到 beta 环境', value: 'upload-beta' },
-  { name: '仅上传到 staging 环境', value: 'upload-staging' },
-  { name: '仅上传到 production 环境', value: 'upload-production' },
-  { name: '仅更新 cache 的 node_modules', value: 'cache' }
-];
+const DEFAULT_COMMANDS = {
+  commands: [
+    { name: '发布到 beta 环境', value: 'beta' },
+    { name: '发布到 staging 环境', value: 'staging' },
+    { name: '发布到 production 环境', value: 'production' },
+    { name: '仅 build 当前项目', value: 'build' },
+    { name: '仅上传到 beta 环境', value: 'upload-beta' },
+    { name: '仅上传到 staging 环境', value: 'upload-staging' },
+    { name: '仅上传到 production 环境', value: 'upload-production' },
+    { name: '仅更新 cache 的 node_modules', value: 'cache' }
+  ]
+};
+const CACHE_COMMANDS = {};
 
 program.version(version);
 
@@ -40,6 +44,19 @@ nx.declare({
     init() {
       const app = new this();
       app.start();
+    }
+  },
+  properties: {
+    commands: function () {
+      const rcFile = path.resolve(process.cwd(), '.gtcrc');
+      if (CACHE_COMMANDS[rcFile]) return CACHE_COMMANDS[rcFile];
+      if (fs.existsSync(rcFile)) {
+        const buf = fs.readFileSync(rcFile, 'utf8');
+        const rc = JSON.parse(buf);
+        CACHE_COMMANDS[rcFile] = rc.commands;
+        return rc.commands;
+      }
+      return DEFAULT_COMMANDS.commands;
     }
   },
   methods: {
@@ -60,7 +77,7 @@ nx.declare({
     },
 
     gtc(inCmd) {
-      const cmd = DEFAULT_COMMANDS.find((item) => item.value === inCmd);
+      const cmd = this.commands.find((item) => item.value === inCmd);
       const gtcMsg = cmd ? `${cmd.name} ${this.action(cmd)}` : inCmd;
       const formated = gtcMsg + ' at ' + dateformat(null, DEFAULT_FORMAT);
       this.conf.update({ gtc: formated });
@@ -68,7 +85,7 @@ nx.declare({
     },
 
     main() {
-      ipt(DEFAULT_COMMANDS, opts).then(([inCmd]) => {
+      ipt(this.commands, opts).then(([inCmd]) => {
         this.gtc(inCmd);
       });
     },
