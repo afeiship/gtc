@@ -17,9 +17,6 @@ npm i -g @jswork/glab-trigger-cli
 git clone https://github.com/afeiship/glab-trigger-cli.git
 cd glab-trigger-cli
 npm i && npm link
-
-# uninstall
-npm rm --global @jswork/glab-trigger-cli
 ```
 
 ## usage
@@ -28,8 +25,8 @@ Usage: glab-trigger-cli [options]
 
 Options:
   -V, --version       output the version number
-  -d, --debug         only show cmds, but not clean.
-  -u, --check-update  Check if has new udpate
+  -d, --debug         Only show cmds, but not clean.
+  -u, --check-update  Check if has new udpate.
   -i, --init          Add gtc config to package.json.
   -h, --help          display help for command
 ~~~
