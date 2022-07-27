@@ -48,12 +48,14 @@ nx.declare({
   },
   properties: {
     commands: function () {
-      const rcFile = path.resolve(process.cwd(), '.gtcrc');
-      if (CACHE_COMMANDS[rcFile]) return CACHE_COMMANDS[rcFile];
+      // get current rc file(.gtcrc)
+      const homeRcFile = path.resolve(process.env.HOME, '.gtcrc');
+      const cwdRcFile = path.resolve(process.cwd(), '.gtcrc');
+      const rcFile = fs.existsSync(cwdRcFile) ? cwdRcFile : homeRcFile;
+
       if (fs.existsSync(rcFile)) {
         const buf = fs.readFileSync(rcFile, 'utf8');
         const rc = JSON.parse(buf);
-        CACHE_COMMANDS[rcFile] = rc.commands;
         return rc.commands;
       }
       return DEFAULT_COMMANDS.commands;
