@@ -19,7 +19,6 @@
   "license": "MIT",
   "dependencies": {
     "@jswork/next": "^1.0.5",
-    "@jswork/next-absolute-package": "^1.0.1",
     "@jswork/next-get-key": "^1.0.0",
     "@jswork/next-json-configuration": "^1.0.2",
     "dateformat": "^3.0.3",

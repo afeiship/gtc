@@ -9,12 +9,14 @@ const DEFAULT_FORMAT = 'yyyy-mm-dd HH:MM:ss';
 
 // next packages:
 require('@jswork/next');
-require('@jswork/next-absolute-package');
+// require('@jswork/next-absolute-package');
 
-const { version, name } = nx.absolutePackage();
+const glabPkg = require('../package.json');
+const { version, name } = glabPkg;
 const program = new Command();
 const NxJsonConfiguration = require('@jswork/next-json-configuration');
 const { execSync } = require('child_process');
+
 
 const opts = { stdin: process.stdin, stdout: process.stdout };
 const DEFAULT_COMMANDS = {
