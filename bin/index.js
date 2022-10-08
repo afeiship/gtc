@@ -11,8 +11,8 @@ const DEFAULT_FORMAT = 'yyyy-mm-dd HH:MM:ss';
 require('@jswork/next');
 // require('@jswork/next-absolute-package');
 
-const glabPkg = require('../package.json');
-const { version, name } = glabPkg;
+const currentPkg = require('../package.json');
+const { version, name } = currentPkg;
 const program = new Command();
 const NxJsonConfiguration = require('@jswork/next-json-configuration');
 const { execSync } = require('child_process');
