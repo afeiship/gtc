@@ -60,13 +60,19 @@ nx.declare({
         return rc.commands;
       }
       return DEFAULT_COMMANDS.commands;
-    }
+    },
   },
   methods: {
     init() {
       this.conf = new NxJsonConfiguration({
         path: path.join(process.cwd(), 'package.json')
       });
+    },
+
+    lovely(inMsg) {
+      const msg = inMsg || '';
+      const isIncludeProd = msg.includes('production');
+      return isIncludeProd ? '🍎' : '🍏';
     },
 
     action(cmd) {
@@ -83,8 +89,9 @@ nx.declare({
       const cmd = this.commands.find((item) => item.value === inCmd);
       const gtcMsg = cmd ? `${cmd.name} ${this.action(cmd)}` : inCmd;
       const formated = gtcMsg + ' at ' + dateformat(null, DEFAULT_FORMAT);
+      const icon = this.lovely(gtcMsg);
       this.conf.update({ gtc: formated });
-      this.exec(['git pull', 'git add --all', `git commit -m "chore: 🦜 ${formated}"`, 'git push']);
+      this.exec(['git pull', 'git add --all', `git commit -m "chore: ${icon} ${formated}"`, 'git push']);
     },
 
     main() {
