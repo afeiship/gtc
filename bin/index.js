@@ -6,6 +6,7 @@ const path = require('path');
 const ipt = require('ipt');
 const dateformat = require('dateformat');
 const DEFAULT_FORMAT = 'yyyy-mm-dd HH:MM:ss';
+const kiv = require('@jswork/kiv');
 
 // next packages:
 require('@jswork/next');
@@ -75,13 +76,6 @@ nx.declare({
       });
     },
 
-    lovely(inMsg) {
-      const msg = inMsg || '';
-      const keys = Object.keys(STR2ICON);
-      const key = keys.find((item) => msg.includes(item));
-      return STR2ICON[key] || '🏝';
-    },
-
     action(cmd) {
       return `__@${cmd.value}__`;
     },
@@ -96,7 +90,7 @@ nx.declare({
       const cmd = this.commands.find((item) => item.value === inCmd);
       const gtcMsg = cmd ? `${cmd.name} ${this.action(cmd)}` : inCmd;
       const formated = gtcMsg + ' at ' + dateformat(null, DEFAULT_FORMAT);
-      const icon = this.lovely(gtcMsg);
+      const icon = kiv(gtcMsg, STR2ICON);
       this.conf.update({ gtc: formated });
       this.exec(['git pull', 'git add --all', `git commit -m "chore: ${icon} ${formated}"`, 'git push']);
     },
