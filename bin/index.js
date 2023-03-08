@@ -16,7 +16,13 @@ const { version, name } = currentPkg;
 const program = new Command();
 const NxJsonConfiguration = require('@jswork/next-json-configuration');
 const { execSync } = require('child_process');
-
+const STR2ICON = {
+  '@beta': '🍏',
+  '@staging': '🍊',
+  '@production': '🍎',
+  '@upload': '🚚',
+  '@cache': '📦',
+};
 
 const opts = { stdin: process.stdin, stdout: process.stdout };
 const DEFAULT_COMMANDS = {
@@ -71,8 +77,9 @@ nx.declare({
 
     lovely(inMsg) {
       const msg = inMsg || '';
-      const isIncludeProd = msg.includes('production');
-      return isIncludeProd ? '🍎' : '🍏';
+      const keys = Object.keys(STR2ICON);
+      const key = keys.find((item) => msg.includes(item));
+      return STR2ICON[key] || '🏝';
     },
 
     action(cmd) {
