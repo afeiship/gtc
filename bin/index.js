@@ -7,6 +7,7 @@ const ipt = require('ipt');
 const dateformat = require('dateformat');
 const DEFAULT_FORMAT = 'yyyy-mm-dd HH:MM:ss';
 const kiv = require('@jswork/kiv');
+const prettier = require('prettier');
 
 // next packages:
 require('@jswork/next');
@@ -22,7 +23,7 @@ const STR2ICON = {
   '@staging': '🍊',
   '@production': '🍎',
   '@upload': '🚚',
-  '@cache': '📦',
+  '@cache': '📦'
 };
 
 const opts = { stdin: process.stdin, stdout: process.stdout };
@@ -67,7 +68,7 @@ nx.declare({
         return rc.commands;
       }
       return DEFAULT_COMMANDS.commands;
-    },
+    }
   },
   methods: {
     init() {
@@ -113,8 +114,10 @@ nx.declare({
 
     start() {
       if (program.init) {
-        this.conf.update({ gtc: '@gtc_init' });
-        console.log(chalk.green('gtc config added to package.json.'));
+        const cmdStr = JSON.stringify(DEFAULT_COMMANDS);
+        const prettyConfig = prettier.format(cmdStr, { parser: 'json', tabWidth: 2 });
+        fs.writeFileSync('./.gtcrc', prettyConfig, 'utf8');
+        return console.log(chalk.green('gtc init success!'));
       }
 
       if (program.args.length > 0) {
