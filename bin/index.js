@@ -91,7 +91,7 @@ nx.declare({
       const cmd = this.commands.find((item) => item.value === inCmd);
       const gtcMsg = cmd ? `${cmd.name} ${this.action(cmd)}` : inCmd;
       const formated = gtcMsg + ' at ' + dateformat(null, DEFAULT_FORMAT);
-      const icon = kiv(gtcMsg, STR2ICON);
+      const icon = cmd.icon || kiv(gtcMsg, STR2ICON);
       this.conf.update({ gtc: formated });
       this.exec(['git pull', 'git add --all', `git commit -m "chore: ${icon} ${formated}"`, 'git push']);
     },
