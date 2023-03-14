@@ -20,6 +20,7 @@
   "dependencies": {
     "@jswork/next": "^1.0.5",
     "@jswork/next-json-configuration": "^1.0.2",
+    "@jswork/next-key-map": "^1.0.3",
     "@jswork/node-gtc": "^1.0.5",
     "chalk": "^4.1.0",
     "commander": "^6.2.0",
@@ -31,8 +32,8 @@
     "@jswork/next-get-key": "^1.0.0",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
-    "gulp-rename": "^2.0.0",
     "gulp-load-plugins": "^2.0.5",
+    "gulp-rename": "^2.0.0",
     "gulp-replace": "^1.0.0",
     "release-it": "^14.14.3"
   },

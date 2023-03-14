@@ -9,6 +9,7 @@ const { nodeGtc, DEFAULT_COMMANDS } = require('@jswork/node-gtc');
 
 // next packages:
 require('@jswork/next');
+require('@jswork/next-key-map');
 // require('@jswork/next-absolute-package');
 
 const currentPkg = require('../package.json');
@@ -69,9 +70,7 @@ nx.declare({
 
     main() {
       const { commands } = this.commandRc;
-      const cmds = commands.map((item) => {
-        return { name: item.label, value: item.value };
-      });
+      const cmds = nx.keyMap(commands, { label: 'name' });
       ipt(cmds, opts).then(([inCmd]) => {
         this.gtc(inCmd);
       });
