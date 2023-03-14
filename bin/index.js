@@ -4,10 +4,8 @@ const chalk = require('chalk');
 const fs = require('fs');
 const path = require('path');
 const ipt = require('ipt');
-const dateformat = require('dateformat');
-const DEFAULT_FORMAT = 'yyyy-mm-dd HH:MM:ss';
-const kiv = require('@jswork/kiv');
 const prettier = require('prettier');
+const { nodeGtc, DEFAULT_COMMANDS } = require('@jswork/node-gtc');
 
 // next packages:
 require('@jswork/next');
@@ -18,27 +16,7 @@ const { version, name } = currentPkg;
 const program = new Command();
 const NxJsonConfiguration = require('@jswork/next-json-configuration');
 const { execSync } = require('child_process');
-const STR2ICON = {
-  '@beta': '🍏',
-  '@staging': '🍊',
-  '@production': '🍎',
-  '@upload': '🚚',
-  '@cache': '📦'
-};
-
 const opts = { stdin: process.stdin, stdout: process.stdout };
-const DEFAULT_COMMANDS = {
-  commands: [
-    { name: '发布到 beta 环境', value: 'beta' },
-    { name: '发布到 staging 环境', value: 'staging' },
-    { name: '发布到 production 环境', value: 'production' },
-    { name: '仅 build 当前项目', value: 'build' },
-    { name: '仅上传到 beta 环境', value: 'upload-beta' },
-    { name: '仅上传到 staging 环境', value: 'upload-staging' },
-    { name: '仅上传到 production 环境', value: 'upload-production' },
-    { name: '仅更新 cache 的 node_modules', value: 'cache' }
-  ]
-};
 
 program.version(version);
 
@@ -56,7 +34,7 @@ nx.declare({
     }
   },
   properties: {
-    commands: function () {
+    commandRc: function () {
       // get current rc file(.gtcrc)
       const homeRcFile = path.resolve(process.env.HOME, '.gtcrc');
       const cwdRcFile = path.resolve(process.cwd(), '.gtcrc');
@@ -65,9 +43,9 @@ nx.declare({
       if (fs.existsSync(rcFile)) {
         const buf = fs.readFileSync(rcFile, 'utf8');
         const rc = JSON.parse(buf);
-        return rc.commands;
+        return rc;
       }
-      return DEFAULT_COMMANDS.commands;
+      return DEFAULT_COMMANDS;
     }
   },
   methods: {
@@ -77,10 +55,6 @@ nx.declare({
       });
     },
 
-    action(cmd) {
-      return `__@${cmd.value}__`;
-    },
-
     exec(inCmds) {
       const cmdstr = inCmds.join(' && ');
       console.log(chalk.green(cmdstr));
@@ -88,16 +62,17 @@ nx.declare({
     },
 
     gtc(inCmd) {
-      const cmd = this.commands.find((item) => item.value === inCmd);
-      const gtcMsg = cmd ? `${cmd.name} ${this.action(cmd)}` : inCmd;
-      const formated = gtcMsg + ' at ' + dateformat(null, DEFAULT_FORMAT);
-      const icon = cmd.icon || kiv(gtcMsg, STR2ICON);
-      this.conf.update({ gtc: formated });
-      this.exec(['git pull', 'git add --all', `git commit -m "chore: ${icon} ${formated}"`, 'git push']);
+      const { cmds, message } = nodeGtc(this.commandRc, inCmd);
+      this.conf.update({ gtc: message });
+      this.exec(cmds);
     },
 
     main() {
-      ipt(this.commands, opts).then(([inCmd]) => {
+      const { commands } = this.commandRc;
+      const cmds = commands.map((item) => {
+        return { name: item.label, value: item.value };
+      });
+      ipt(cmds, opts).then(([inCmd]) => {
         this.gtc(inCmd);
       });
     },
