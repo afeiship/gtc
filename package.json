@@ -21,7 +21,7 @@
     "@jswork/next": "^1.1.5",
     "@jswork/next-json-configuration": "^1.0.2",
     "@jswork/next-key-map": "^1.0.3",
-    "@jswork/node-gtc": "^1.0.6",
+    "@jswork/node-gtc": "^1.0.7",
     "chalk": "^4.1.0",
     "commander": "^6.2.0",
     "ipt": "^3.2.0",
