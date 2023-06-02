@@ -82,8 +82,10 @@ nx.declare({
     getGtcVersion(inCmd) {
       const { autoVersion } = this.commandRc;
       const isProduction = inCmd === 'production';
+      const isCache = inCmd === 'cache';
       const curGtcVersion = this.conf.get('gtcVersion') || '1.0.0';
       const method = isProduction ? 'release' : 'patch';
+      const identity = isCache ? 'beta' : inCmd;
       const newGtcVersion = GtcVersion[method](curGtcVersion, inCmd);
       return autoVersion ? newGtcVersion : curGtcVersion;
     },
