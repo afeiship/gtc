@@ -64,15 +64,10 @@ nx.declare({
 
     gtc(inCmd) {
       const { cmds, message } = nodeGtc(this.commandRc, inCmd);
-
       // gtcVersion logic
-      const isProduction = inCmd === 'production';
-      const curGtcVersion = this.conf.get('gtcVersion') || '1.0.0';
-      const method = isProduction ? 'release' : 'patch';
-      const newGtcVersion = GtcVersion[method](curGtcVersion, inCmd);
-
+      const gtcVersion = this.getGtcVersion(inCmd);
       // update package.json
-      this.conf.update({ gtc: message, gtcVersion: newGtcVersion });
+      this.conf.update({ gtc: message, gtcVersion });
       this.exec(cmds);
     },
 
@@ -82,6 +77,15 @@ nx.declare({
       ipt(cmds, opts).then(([inCmd]) => {
         this.gtc(inCmd);
       });
+    },
+
+    getGtcVersion(inCmd) {
+      const { autoVersion } = this.commandRc;
+      const isProduction = inCmd === 'production';
+      const curGtcVersion = this.conf.get('gtcVersion') || '1.0.0';
+      const method = isProduction ? 'release' : 'patch';
+      const newGtcVersion = GtcVersion[method](curGtcVersion, inCmd);
+      return autoVersion ? newGtcVersion : curGtcVersion;
     },
 
     checkUpdate() {
