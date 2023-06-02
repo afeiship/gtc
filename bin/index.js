@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const ipt = require('ipt');
 const prettier = require('prettier');
-const { nodeGtc, DEFAULT_COMMANDS } = require('@jswork/node-gtc');
+const { nodeGtc, DEFAULT_COMMANDS, GtcVersion } = require('@jswork/node-gtc');
 
 // next packages:
 require('@jswork/next');
@@ -64,7 +64,15 @@ nx.declare({
 
     gtc(inCmd) {
       const { cmds, message } = nodeGtc(this.commandRc, inCmd);
-      this.conf.update({ gtc: message });
+
+      // gtcVersion logic
+      const isProduction = inCmd === 'production';
+      const curGtcVersion = this.conf.get('gtcVersion') || '1.0.0';
+      const method = isProduction ? 'release' : 'patch';
+      const newGtcVersion = GtcVersion[method](curGtcVersion, inCmd);
+
+      // update package.json
+      this.conf.update({ gtc: message, gtcVersion: newGtcVersion });
       this.exec(cmds);
     },
 
