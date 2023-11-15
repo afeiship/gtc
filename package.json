@@ -20,11 +20,11 @@
     "@jswork/next": "^1.2.2",
     "@jswork/next-json-configuration": "^1.0.2",
     "@jswork/next-key-map": "^1.0.11",
-    "@jswork/node-gtc": "^1.0.12",
+    "@jswork/node-gtc": "^1.0.13",
     "chalk": "^4.1.0",
     "commander": "^6.2.0",
     "ipt": "^3.2.0",
-    "prettier": "^2.8.4"
+    "prettier": "1"
   },
   "devDependencies": {
     "@jswork/next-absolute-package": "^1.0.1",
